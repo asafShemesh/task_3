@@ -104,7 +104,7 @@ void StrList_insertLast(StrList *strList, const char *data)
     strList->size_t++;
 }
 
-void StrList_insertAt(StrList *StrList, const char *data, int index)
+void StrList_insertAt(StrList *StrList, const char* data, int index)
 {
     if (index < 0 || index > StrList->size_t)
     {
@@ -122,7 +122,7 @@ void StrList_insertAt(StrList *StrList, const char *data, int index)
     StrList->size_t++;
 }
 
-char *StrList_firstData(const StrList *StrList)
+char *StrList_firstData(const StrList* StrList)
 {
     return StrList->head->next->string;
 }
@@ -173,6 +173,9 @@ int StrList_printLen(const StrList *Strlist)
 
 int StrList_count(StrList *StrList, const char *data)
 {
+     if (StrList == NULL || data == NULL) {
+        return 0;
+     }
     int times = 0;
     int count = 0;
     Node *current = StrList->head->next;
@@ -189,8 +192,11 @@ int StrList_count(StrList *StrList, const char *data)
     return times;
 }
 
-void StrList_remove(StrList *StrList, const char *data)
+void StrList_remove(StrList *StrList, const char* data)
 {
+    if (StrList == NULL || data == NULL)
+    {
+        return;}
     Node *current = StrList->head;
     Node *prev = NULL;
 
@@ -323,13 +329,33 @@ void StrList_reverse(StrList *StrList)
 
     StrList->head->next = prev;
 }
-
-void StrList_sort(StrList *StrList)
+int StrList_isSorted(StrList *StrList)
 {
     if (StrList == NULL || StrList->head == NULL)
     {
-        return;
+        return 0;
     }
+
+    Node *current = StrList->head->next;
+    while (current != NULL && current->next != NULL)
+    {
+        if (strcmp(current->string, current->next->string) > 0)
+        {
+            return 0;
+        }
+        current = current->next;
+    }
+
+    return 1;
+}
+
+void StrList_sort(StrList *StrList)
+{
+    if (StrList == NULL || StrList_isSorted(StrList) || StrList->head == NULL)
+{
+    return;
+}
+
 
     int swapped;
     Node *ptr1;
@@ -362,22 +388,3 @@ void StrList_sort(StrList *StrList)
     } while (swapped);
 }
 
-int StrList_isSorted(StrList *StrList)
-{
-    if (StrList == NULL || StrList->head == NULL)
-    {
-        return 0;
-    }
-
-    Node *current = StrList->head->next;
-    while (current != NULL && current->next != NULL)
-    {
-        if (strcmp(current->string, current->next->string) > 0)
-        {
-            return 0;
-        }
-        current = current->next;
-    }
-
-    return 1;
-}
