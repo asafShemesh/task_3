@@ -104,7 +104,7 @@ void StrList_insertLast(StrList *strList, const char *data)
     strList->size_t++;
 }
 
-void StrList_insertAt(StrList *StrList, const char* data, int index)
+void StrList_insertAt(StrList *StrList, const char *data, int index)
 {
     if (index < 0 || index > StrList->size_t)
     {
@@ -122,14 +122,15 @@ void StrList_insertAt(StrList *StrList, const char* data, int index)
     StrList->size_t++;
 }
 
-char *StrList_firstData(const StrList* StrList)
+char *StrList_firstData(const StrList *StrList)
 {
     return StrList->head->next->string;
 }
 
 void StrList_print(const StrList *StrList)
 {
-    if(StrList==NULL || StrList->size_t==0){
+    if (StrList == NULL || StrList->size_t == 0)
+    {
         return;
     }
     Node *current = StrList->head->next;
@@ -176,9 +177,10 @@ int StrList_printLen(const StrList *Strlist)
 
 int StrList_count(StrList *StrList, const char *data)
 {
-     if (StrList == NULL || data == NULL) {
+    if (StrList == NULL || data == NULL)
+    {
         return 0;
-     }
+    }
     int times = 0;
     int count = 0;
     Node *current = StrList->head->next;
@@ -195,11 +197,12 @@ int StrList_count(StrList *StrList, const char *data)
     return times;
 }
 
-void StrList_remove(StrList *StrList, const char* data)
+void StrList_remove(StrList *StrList, const char *data)
 {
     if (StrList == NULL || data == NULL)
     {
-        return;}
+        return;
+    }
     Node *current = StrList->head;
     Node *prev = NULL;
 
@@ -355,10 +358,9 @@ int StrList_isSorted(StrList *StrList)
 void StrList_sort(StrList *StrList)
 {
     if (StrList == NULL || StrList_isSorted(StrList) || StrList->head == NULL)
-{
-    return;
-}
-
+    {
+        return;
+    }
 
     int swapped;
     Node *ptr1;
@@ -372,13 +374,11 @@ void StrList_sort(StrList *StrList)
     do
     {
         swapped = 0;
-        ptr1 = StrList->head->next; // Skip the dummy head node
-
+        ptr1 = StrList->head->next;
         while (ptr1->next != lptr)
         {
             if (strcmp(ptr1->string, ptr1->next->string) > 0)
             {
-                // Swap the nodes if they are in the wrong order
                 char *temp = ptr1->string;
                 ptr1->string = ptr1->next->string;
                 ptr1->next->string = temp;
@@ -390,4 +390,3 @@ void StrList_sort(StrList *StrList)
         lptr = ptr1;
     } while (swapped);
 }
-

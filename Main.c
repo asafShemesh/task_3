@@ -35,9 +35,8 @@ int main()
         }
         else if (num == 4)
         {
-            printf("%ld",StrList_size(list));
+            printf("%ld", StrList_size(list));
             printf("\n");
-
         }
         else if (num == 5)
         {
@@ -48,16 +47,15 @@ int main()
         else if (num == 6)
         {
 
-            printf("%d",StrList_printLen(list));
+            printf("%d", StrList_printLen(list));
             printf("\n");
         }
         else if (num == 7)
         {
             char userInput[50];
             scanf("%s", userInput);
-            printf("%d",StrList_count(list, userInput));
+            printf("%d", StrList_count(list, userInput));
             printf("\n");
-
         }
         else if (num == 8)
         {
@@ -79,7 +77,6 @@ int main()
         {
             StrList_free(list);
             list = StrList_alloc();
-
         }
         else if (num == 12)
         {
@@ -89,17 +86,16 @@ int main()
         {
             if (StrList_isSorted(list))
             {
-                printf("%s","true");
+                printf("%s", "true");
                 printf("\n");
             }
             else
             {
-                printf("%s","false");
+                printf("%s", "false");
                 printf("\n");
-
             }
         }
-    scanf("%d", &num);
+        scanf("%d", &num);
     }
 
     StrList_free(list);
