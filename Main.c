@@ -11,89 +11,97 @@ int main()
     {
         if (num == 1)
         {
-            int rounds;
-            scanf("%d", &rounds);
-            while (rounds != 0)
+            int index;
+            scanf("%d", &index);
+            for (int i = 0; i < index; i++)
             {
-                char s;
-                scanf("%s", &s);
-                StrList_insertLast(list, &s);
-                rounds = rounds - 1;
+                char input[1000];
+                scanf("%s", input);
+                StrList_insertLast(list, input);
             }
-            num = 0;
         }
-        StrList_print(list);
-    }
-    if (num == 2)
-    {
-        int index;
-        scanf("%d", &index);
-        char userInput[50];
-        scanf("%s", userInput);
-        StrList_insertAt(list, userInput, index);
-    }
-    if (num == 3)
-    {
-        StrList_print(list);
-    }
-    if (num == 4)
-    {
-        printf(StrList_size);
-    }
-    if (num == 5)
-    {
-        int index;
-        scanf("%d", &index);
-        StrList_printAt(list, index);
-    }
-    if (num == 6)
-    {
 
-        StrList_printLen(list);
-    }
-    if (num == 7)
-    {
-        char userInput[50];
-        scanf("%s", userInput);
-        printf(StrList_count(list, userInput));
-    }
-    if (num == 8)
-    {
-        char userInput[50];
-        scanf("%s", userInput);
-        StrList_remove(list, userInput);
-    }
-    if (num == 9)
-    {
-        int index;
-        scanf("%d", &index);
-        StrList_removeAt(list, index);
-    }
-    if (num == 10)
-    {
-        StrList_reverse(list);
-    }
-    if (num == 11)
-    {
-        StrList_free(list);
-    }
-    if (num == 12)
-    {
-        StrList_sort(list);
-    }
-    if (num == 13)
-    {
-        if (StrList_isSorted(list))
+        else if (num == 2)
         {
-            printf("true");
+            int index;
+            scanf("%d", &index);
+            char userInput[50];
+            scanf("%s", userInput);
+            StrList_insertAt(list, userInput, index);
         }
-        else
+        else if (num == 3)
         {
-            printf("false");
+            StrList_print(list);
         }
-    }
+        else if (num == 4)
+        {
+            printf("%ld",StrList_size(list));
+            printf("\n");
 
+        }
+        else if (num == 5)
+        {
+            int index;
+            scanf("%d", &index);
+            StrList_printAt(list, index);
+        }
+        else if (num == 6)
+        {
+
+            printf("%d",StrList_printLen(list));
+            printf("\n");
+        }
+        else if (num == 7)
+        {
+            char userInput[50];
+            scanf("%s", userInput);
+            printf("%d",StrList_count(list, userInput));
+            printf("\n");
+
+        }
+        else if (num == 8)
+        {
+            char userInput[50];
+            scanf("%s", userInput);
+            StrList_remove(list, userInput);
+        }
+        else if (num == 9)
+        {
+            int index;
+            scanf("%d", &index);
+            StrList_removeAt(list, index);
+        }
+        else if (num == 10)
+        {
+            StrList_reverse(list);
+        }
+        else if (num == 11)
+        {
+            StrList_free(list);
+            list = StrList_alloc();
+
+        }
+        else if (num == 12)
+        {
+            StrList_sort(list);
+        }
+        else if (num == 13)
+        {
+            if (StrList_isSorted(list))
+            {
+                printf("%s","true");
+                printf("\n");
+            }
+            else
+            {
+                printf("%s","false");
+                printf("\n");
+
+            }
+        }
     scanf("%d", &num);
+    }
 
+    StrList_free(list);
     return 0;
 }

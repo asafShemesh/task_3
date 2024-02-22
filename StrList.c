@@ -129,6 +129,9 @@ char *StrList_firstData(const StrList* StrList)
 
 void StrList_print(const StrList *StrList)
 {
+    if(StrList==NULL || StrList->size_t==0){
+        return;
+    }
     Node *current = StrList->head->next;
     int count = 0;
     while (current != NULL)

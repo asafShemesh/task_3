@@ -1,15 +1,15 @@
-all: Main
+all: StrList
 
-Main: StrList.o Main.o
-	gcc -Wall StrList.o Main.o -o Main
+StrList: StrList.o Main.o
+	gcc -Wall -g StrList.o Main.o -o StrList
 
 Main.o: Main.c StrList.h
-	gcc -Wall -c Main.c
+	gcc -Wall -g -c Main.c
 
 StrList.o: StrList.c StrList.h
-	gcc -Wall -c StrList.c
+	gcc -Wall -g -c StrList.c
 
 clean:
-	rm -f *.o Main
+	rm -f *.o StrList
 
 .PHONY: clean all
