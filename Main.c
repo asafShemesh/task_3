@@ -86,15 +86,16 @@ int main()
         else if (num == 7)
         {
             char *userInput = inputString(stdin, 100);
-            scanf("%s", userInput);
             printf("%d", StrList_count(list, userInput));
             printf("\n");
+            free(userInput);
         }
         else if (num == 8)
         {
             char *userInput = inputString(stdin, 100);
-            scanf("%s", userInput);
             StrList_remove(list, userInput);
+            free(userInput);
+
         }
         else if (num == 9)
         {
