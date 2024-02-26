@@ -138,7 +138,7 @@ void StrList_print(const StrList *StrList)
     int count = 0;
     while (current != NULL)
     {
-        printf("%s ", current->string);
+        printf("%s", current->string);
         current = current->next;
         count++;
     }
