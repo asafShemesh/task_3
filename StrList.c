@@ -131,7 +131,6 @@ void StrList_print(const StrList *StrList)
 {
     if (StrList == NULL || StrList->size_t == 0)
     {
-        printf("\n");
         return;
     }
     Node *current = StrList->head->next;
