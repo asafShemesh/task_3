@@ -48,6 +48,7 @@ int main()
                 token = strtok(NULL, " ");
                 wordCount++;
             }
+            free(input);
         }
 
         else if (num == 2)
@@ -57,6 +58,7 @@ int main()
             char *userInput = inputString(stdin, 100);
             scanf("%s", userInput);
             StrList_insertAt(list, userInput, index);
+            free(userInput);
         }
         else if (num == 3)
         {

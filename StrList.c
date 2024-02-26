@@ -134,16 +134,16 @@ void StrList_print(const StrList *StrList)
         return;
     }
     Node *current = StrList->head->next;
-    int count = 0;
     while (current != NULL)
     {
         printf("%s", current->string);
-        if (current->next != NULL)
+
+        current = current->next;
+
+        if (current != NULL)
         {
             printf(" ");
         }
-        current = current->next;
-        count++;
     }
     printf("\n");
 }
@@ -160,7 +160,7 @@ void StrList_printAt(const StrList *Strlist, int index)
             current = current->next;
             count++;
         }
-        printf("%s ", current->string);
+        printf("%s", current->string);
         printf("\n");
     }
 }
