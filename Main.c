@@ -5,25 +5,27 @@
 
 char *inputString(FILE *fp, size_t size)
 {
-    char *str;
-    int ch;
-    size_t len = 0;
-    str = realloc(NULL, sizeof(*str) * size);
+    char *str = malloc(size);
     if (!str)
         return str;
+
+    int ch;
+    size_t len = 0;
+
     while (EOF != (ch = fgetc(fp)) && ch != '\n')
     {
         str[len++] = ch;
-        if (len == size)
+        if (len == size - 1) 
         {
-            str = realloc(str, sizeof(*str) * (size += 16));
+            size += 16;
+            str = realloc(str, size);
             if (!str)
                 return str;
         }
     }
     str[len++] = '\0';
 
-    return realloc(str, sizeof(*str) * len);
+    return str;
 }
 
 int main()
