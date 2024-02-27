@@ -9,7 +9,7 @@ char *inputString(FILE *fp, size_t size)
     int ch;
     size_t len = 0;
 
-    str = malloc(size);  // Check malloc failure
+    str = malloc(size); 
     if (!str)
     {
         fprintf(stderr, "Memory allocation failed\n");
@@ -19,10 +19,10 @@ char *inputString(FILE *fp, size_t size)
     while (EOF != (ch = fgetc(fp)) && ch != '\n')
     {
         str[len++] = ch;
-        if (len == size - 1)  // Adjusted condition to leave space for null terminator
+        if (len == size - 1) 
         {
             size += 16;
-            str = realloc(str, size);  // Check realloc failure
+            str = realloc(str, size); 
             if (!str)
             {
                 fprintf(stderr, "Memory reallocation failed\n");
