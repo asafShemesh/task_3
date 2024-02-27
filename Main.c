@@ -5,26 +5,34 @@
 
 char *inputString(FILE *fp, size_t size)
 {
-    
-    char *str;
+    char *str = NULL;
     int ch;
     size_t len = 0;
-    str = realloc(NULL, sizeof(*str) * size);
+
+    str = malloc(size);  // Check malloc failure
     if (!str)
-        return str;
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
     while (EOF != (ch = fgetc(fp)) && ch != '\n')
     {
         str[len++] = ch;
-        if (len == size)
+        if (len == size - 1)  // Adjusted condition to leave space for null terminator
         {
-            str = realloc(str, sizeof(*str) * (size += 16));
+            size += 16;
+            str = realloc(str, size);  // Check realloc failure
             if (!str)
-                return str;
+            {
+                fprintf(stderr, "Memory reallocation failed\n");
+                exit(EXIT_FAILURE);
+            }
         }
     }
-    str[len++] = '\0';
+    str[len] = '\0';
 
-    return realloc(str, sizeof(*str) * len);
+    return str;
 }
 
 int main()
@@ -88,12 +96,15 @@ int main()
             scanf("%s", userInput);
             printf("%d", StrList_count(list, userInput));
             printf("\n");
+            free(userInput);
         }
         else if (num == 8)
         {
             char *userInput = inputString(stdin, 100);
             scanf("%s", userInput);
             StrList_remove(list, userInput);
+            free(userInput);
+
         }
         else if (num == 9)
         {
