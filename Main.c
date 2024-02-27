@@ -5,6 +5,7 @@
 
 char *inputString(FILE *fp, size_t size)
 {
+    
     char *str;
     int ch;
     size_t len = 0;
